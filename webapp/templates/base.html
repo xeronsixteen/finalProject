@@ -1,4 +1,5 @@
 {% load static %}
+{% load social_share %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,15 +23,14 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik"
           rel="stylesheet">
-    <title>{% block title %}finalProject{% endblock %}</title>
+    <title>{% block title %}myapp{% endblock %}</title>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg ">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div class="container ">
         <a class="navbar-brand"
-           href="{% url "webapp:index" %}"><img src="/uploads/images/logo3.png"
-                                                alt="logo"></a>
+           href="{% url "webapp:index" %}">Home</a>
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -46,9 +46,8 @@
                 {% block nav %}
                 {% endblock %}
                 {% if user.is_authenticated %}
+
                     {% block menu_links %}{% endblock %}
-                    <li class="menu-right mt-2"><a href="{% url 'accounts:UsersView' %}"
-                                                   class="nav-link">Users</a></li>
                     <li class="nav-item mt-2">
                         <p class="nav-link">Hello <a style="text-decoration: None"
                                                      href="{% url "accounts:profile" request.user.pk %}">{{ user.username }}</a>
@@ -56,8 +55,6 @@
                     </li>
                     <li class="menu-right mt-2"><a href="{% url 'accounts:logout' %}"
                                                    class="nav-link">Logout</a></li>
-
-
                 {% else %}
                     <li class="menu-right"><a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}"
                                               class="nav-link">Login</a></li>
@@ -66,8 +63,6 @@
                            href="{% url "accounts:registration" %}?next={{ request.get_full_path }}">Registration</a>
                     </li>
                 {% endif %}
-
-
             </ul>
         </div>
     </div>
@@ -83,6 +78,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-
-<script src="{% static "js/index.js" %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
 </html>

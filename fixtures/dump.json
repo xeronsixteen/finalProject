@@ -1,0 +1,104 @@
+[
+{
+  "model": "webapp.photo",
+  "pk": 2,
+  "fields": {
+    "image": "images/498161438_0_0_2901_2901_1920x0_80_0_0_f58d689c5a4e38d472c854f01654fee1_S7KG9bL.jpeg",
+    "description": "Александр Пушкин",
+    "created_at": "2022-09-24T06:50:25.064Z",
+    "album": 2,
+    "user": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 3,
+  "fields": {
+    "image": "images/16591778851898_bjNB09b.jpeg",
+    "description": "Криштиану Роналду",
+    "created_at": "2022-09-24T06:50:46.138Z",
+    "album": 3,
+    "user": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 4,
+  "fields": {
+    "image": "images/Brendan_Eich_Mozilla_Foundation_official_photo.jpeg",
+    "description": "Брендан Эйх",
+    "created_at": "2022-09-24T06:51:01.835Z",
+    "album": 1,
+    "user": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 5,
+  "fields": {
+    "image": "images/ross600.jpeg",
+    "description": "Гвидо Ван Россум",
+    "created_at": "2022-09-24T06:51:24.139Z",
+    "album": 1,
+    "user": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 6,
+  "fields": {
+    "image": "images/Tschingis_Ajtmatow.jpeg",
+    "description": "Чынгыз Айтматов",
+    "created_at": "2022-09-24T06:51:37.172Z",
+    "album": 2,
+    "user": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 7,
+  "fields": {
+    "image": "images/unnamed_DQ8NNwa.jpeg",
+    "description": "Лионель Месси",
+    "created_at": "2022-09-24T06:52:04.486Z",
+    "album": 3,
+    "user": []
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 1,
+  "fields": {
+    "created_at": "2022-09-24",
+    "name": "Разработчики",
+    "description": "Здесь лежат фотографии тех, кто придумал современные языки программирования или хотя бы приложил руку",
+    "user": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 2,
+  "fields": {
+    "created_at": "2022-09-24",
+    "name": "Писатели",
+    "description": "Здесь лежат фотки великих поэтов и писателей",
+    "user": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 3,
+  "fields": {
+    "created_at": "2022-09-24",
+    "name": "Футболисты",
+    "description": "Здесь лежат фотографии футболистов с Европы",
+    "user": [
+      1
+    ]
+  }
+}
+]
