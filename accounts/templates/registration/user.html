@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block nav %}
+    {% if user_obj == user %}
+
+{#        <li class="nav-item mt-2">#}
+{#            <a class='nav-link'#}
+{#               href="{% url 'accounts:change_profile' %}">Change profile</a>#}
+{#        </li>#}
+{#        <li class="nav-item mt-2">#}
+{#            <a class='nav-link'#}
+{#               href="{% url 'accounts:change_password' %}">Change password</a>#}
+{#        </li>#}
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class='card flex-row mt-3'>
+        {% if user_obj.profile.avatar %}
+            <img src="{{ user_obj.profile.avatar.url }}"
+                 class="card-img-top w-25"
+                 alt="...">
+        {% endif %}
+        <div class='cart-body text-left ms-3'>
+            <p>Username: {{ user_obj.username }}</p>
+            <p>Name: {{ user_obj.first_name }}</p>
+            <p>Surname: {{ user_obj.last_name }}</p>
+            <p>Email: {{ user_obj.email }}</p>
+            <p>Git: {{ user_obj.git }}</p>
+            <p>Bio: {{ user_obj.bio }}</p>
+            <h4 class="text-center clear">User's albums</h4>
+            {% for album in request.user_obj.albums.all %}
+                <a href="{% url 'webapp:one_album' album.pk %}">{{ album }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

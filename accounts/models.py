@@ -1,30 +1,17 @@
-from datetime import timedelta
-from secrets import token_urlsafe
-
+# Create your models here.
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.utils import timezone
-
-
-# Create your models here.
 
 
 class Profile(models.Model):
-    birthday = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
-    avatar = models.ImageField(upload_to="avatars", null=True, blank=True, verbose_name="Аватар")
-    user = models.OneToOneField(get_user_model(),
-                                on_delete=models.CASCADE,
-                                verbose_name="Пользователь",
-                                related_name="profile")
+    avatar = models.ImageField(upload_to='avatars', blank=True, null=True, verbose_name='avatar')
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, verbose_name='user', related_name='profile')
+    git = models.URLField(max_length=100, blank=True, null=True, verbose_name='link')
+    bio = models.TextField(max_length=2000, null=True, blank=True, verbose_name='bio')
 
+    def __str__(self):
+        return self.user.get_full_name() + "'s Profile"
 
-class Token(models.Model):
-    TOKEN_LIFETIME_SECONDS = 2 * 60 * 60
-
-    token = models.CharField(max_length=50, unique=True, default=token_urlsafe)
-    created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-
-    def is_expired(self):
-        return self.created_at + timedelta(seconds=self.TOKEN_LIFETIME_SECONDS) < timezone.now()
-
+    class Meta:
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
