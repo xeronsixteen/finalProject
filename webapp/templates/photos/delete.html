@@ -1,0 +1,9 @@
+{%  extends 'base.html' %}
+{% block content %}
+    <p>Do you want to delete {{ photo.description }}?</p>
+    <form action="" method="POST" enctype="multipart/form-data">
+    {%  csrf_token %}
+        <input name="Yes" type="submit" value="Yes"/>
+        <input name="No" type="submit" value="No"/>
+    </form>
+{%  endblock %}

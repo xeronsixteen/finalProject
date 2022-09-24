@@ -1,0 +1,9 @@
+{%  extends 'base.html' %}
+{% block content %}
+    <p>Do you want to delete {{ album.name }}?</p>
+    <form action="" method="POST">
+    {%  csrf_token %}
+        <input name="Yes" type="submit" value="Yes"/>
+        <input name="No" type="submit" value="No"/>
+    </form>
+{%  endblock %}

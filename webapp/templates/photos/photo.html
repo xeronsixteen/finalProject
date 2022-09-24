@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block nav %}
+{% endblock %}
+{% block content %}
+    <p>Кто изображен на фото: {{ photo_obj.description }}</p>
+    <img
+            src="{{ photo_obj.image.url }}"
+            class="card-img-top w-25"
+            alt="..."
+    >
+    <div class="row mt-3 pb-4">
+        {% for album in albums %}
+            <div class="">
+            <div class="card mb-3">
+                <div class="card-body">
+                    p class="card-text">Альбом: <a href="{% url 'webapp:one_album' album.pk %}"></a></p>
+                </div>
+                <div class="btn-group w-100"
+                     role="group"
+                     aria-label="Basic mixed styles example">
+                </div>
+            </div>
+        {% empty %}
+            <p>This photo does not have albums</p>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

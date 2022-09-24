@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load social_share %}
+{% load static %}
+
+{% block nav %}
+    {% if perms.webapp.add_photo or perms.webapp.add_album or user == photos.user %}
+        <li class="menu-right mt-2">
+            <a href="{% url 'webapp:add' %}"
+               class="nav-link">Add new photo</a>
+        </li>
+        <li class="menu-right mt-2">
+            <a href="{% url 'webapp:add_album' %}"
+               class="nav-link">Add new album</a>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <h1 style="text-align: center">Фотографии</h1>
+    <div class="row">
+        {% for photo in photos %}
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="{{ photo.image.url }}"
+                             class="card-img-top w-25"
+                             alt="...">
+                        <p class="card-text"><b>Описание фотографии:</b> {{ photo.description }}</p>
+                        <p class="card-text"><b>Дата создания</b>: {{ photo.created_at }}</p>
+                        {% if user.is_authenticated or user == photos.user %}
+                            <span id="photo-{{ photo.id }}">В избранных: {{ photo.fav.count }}</span>
+                            <p><a data-photo-id="photo-{{ photo.id }}"
+                                  class="favs"
+                                  href="{% url "webapp:fav" photo.pk %}">
+                                {% if request.user in photo.fav.all %} Удалить из избранного {% else %} Положить в
+                                    избранное {% endif %}</a></p>
+                            {% post_to_facebook object_or_url "Post to Facebook!" %}
+                            {% post_to_twitter object_or_url "Post to Twitter!" %}
+                            {% post_to_whatsapp object_or_url "Post to WhatsApp!" %}
+                        {% endif %}
+                        {% if perm.webapp.change_photo or perm.webapp.delete_photo %}
+                            <a class="btn btn-dark"
+                               href="{% url 'webapp:update' photo.pk %}">Update</a>
+                            <a class="btn btn-dark"
+                               href="{% url 'webapp:delete' photo.pk %}">Delete</a>
+                            <a href="{{ photo.get_absolute_url }}"
+                               class="card-link btn btn-dark">Подробнее</a>
+                        {% endif %}
+                        <a class="btn btn-dark"
+                           href="{% url 'webapp:one_album' photo.album.pk %}">Album</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
